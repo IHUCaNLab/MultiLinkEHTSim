@@ -1,0 +1,24 @@
+SETTINGS FIELDS
+--------------------------------------------------------
+
+- sim_time: maximum simulation time [seconds]
+- sta_z_range: range in which the random height of the stations should be picked. Two-elements vector ([min, max]) [metres]
+- ch_refresh: time interval between channels realisations. [seconds]
+- perfect_rx: enables the perfect reception (all packets are correctly received). Logical.
+- pkt_max_retx: maximum number of packet retransmissions.
+- ch_bws: channels bandwidths. Vector of size 1x3 ([BW_2.4, BW_5, BW_6]). [MHz]
+- traffic_rate: traffic rate for Poisson like traffic. All stations will generate traffic with the same characteristics. [bps]
+- show_scenario: display the scenario in a figure. Useful for debug. Logical
+- ap_z: access point height   [metres]
+- num_agg_pkts: maximum number of MPDUs in an A-MPDU.
+- shad_refresh: time interval between shadowing realizations. [seconds]
+- mpdu_lifetime: packet lifetime. Expired packets are removed from the buffer. [seconds]
+- cca_below_lims: CCA levels for the three links. 1x3 vector. [dBm]
+- agg_meth: selects the aggregation method. Three possible choices: 1) TBA; 2) ESA; 3) BPA.
+- ap_x: x position for the access point    [metres]
+- ap_y: y position for the access point    [metres]
+- sta_exes: 1 x Nstas vector containing the x positions of the stations    [metres]
+- sta_yis: 1 x Nstas vector containing the y positions of the stations   [metres]
+- min_pkt_size: minimum packet size [bits]
+- max_pkt_size: maximum packet size [bits]
+- model: selects the channel model. Choices: 'Stat_mod' for the statistical models for MMSE receivers, 'Mod_C' for IEEE 802.11 Model C
