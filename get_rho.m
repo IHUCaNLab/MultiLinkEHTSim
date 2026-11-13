@@ -41,23 +41,27 @@ function [rho, rx_p] = get_rho(tx_p,x_a,x_b,y_a,y_b,z_a,z_b,ant_g_a,ant_g_b, fc,
     % computing the distance
     d = sqrt(abs(x_a - x_b)^2 + abs(y_a -y_b)^2 + abs(z_a - z_b)^2);
 
-    if d > c.bp_distance
-        f_part = 35 * log10(d/c.bp_distance);
+    if d >= 1     % making sure TX and RX are at least 1 m apart
+        if d > c.bp_distance
+            f_part = 35 * log10(d/c.bp_distance);
+        else
+            f_part = 0;
+        end
+
+        % computing the path loss
+        pl = 40.05 + 20*log10(fc./2.4) + 20*log10(min([c.bp_distance,d])) + f_part + 7*walls;
+
+        % noise power computed at 20 MHz with a noise factor equal to 7 (average).
+        noise_power = -174 + 10*log10(20e6) + 7;
+
+        tx_p_lin = 10 ^ (tx_p / 10);
+        tx_p_split = tx_p_lin / c.spatial_streams;
+        tx_p_split_dbm = 10 * log10(tx_p_split);
+        rx_p = tx_p_split_dbm - pl + ant_g_a + ant_g_b - shadowing;
+        rho_dbm = tx_p_split_dbm - pl + ant_g_a + ant_g_b - noise_power - shadowing;
+        rho = 10^(rho_dbm/10);
     else
-        f_part = 0;
+        error("ERROR: AP-STA distance was < 1 meter.")
     end
-
-    % computing the path loss
-    pl = 40.05 + 20*log10(fc./2.4) + 20*log10(min([c.bp_distance,d])) + f_part + 7*walls;
-
-    % noise power computed at 20 MHz with a noise factor equal to 7 (average).
-    noise_power = -174 + 10*log10(20e6) + 7;
-
-    tx_p_lin = 10 ^ (tx_p / 10);
-    tx_p_split = tx_p_lin / c.spatial_streams;
-    tx_p_split_dbm = 10 * log10(tx_p_split);
-    rx_p = tx_p_split_dbm - pl + ant_g_a + ant_g_b - shadowing;
-    rho_dbm = tx_p_split_dbm - pl + ant_g_a + ant_g_b - noise_power - shadowing;
-    rho = 10^(rho_dbm/10);
 
 end
