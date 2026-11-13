@@ -130,7 +130,7 @@ if s.max_pkt_size == s.min_pkt_size
     lambdas = s.traffic_rates./(s.max_pkt_size);
     equal_size = 1;
 else
-    avg_pkt_size = round(mean(s.max_pkt_size,s.min_pkt_size));
+    avg_pkt_size = round(mean([s.max_pkt_size,s.min_pkt_size]));
     lambdas = s.traffic_rates./(avg_pkt_size);
     equal_size = 0;
 end
