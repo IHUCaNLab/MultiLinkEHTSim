@@ -39,7 +39,7 @@ end
 [Nsd,Nss] = size(SNRs);
 
 % snr values after which the curve is stable -> no need to map
-% an entry for each modulation -> 5 entries
+% an entry for each modulation -> 7 entries
 rbir_extremes = [9.50 12.80 19.90 26.26 32 42 48];
 rbir_ext_values = [1 2 4 6 8 10 12];
 mod_indexes = [1 2 2 3 3 4 4 4 5 5 6 6 7 7];

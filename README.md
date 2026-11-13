@@ -2,6 +2,8 @@
 
 Matlab simulator for IEEE 802.11be networks with a particular focus on multi link operation.
 
+### Dependencies
+Requires the Statistics and Machine Learning Toolbox.
 
 ### Installation
 
