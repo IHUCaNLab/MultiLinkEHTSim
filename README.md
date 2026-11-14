@@ -11,5 +11,5 @@ Requires the Statistics and Machine Learning Toolbox.
 2. Add the unpacked directory to Matlab's path by typing `addpath('<unpackedFolder>')` on the command window.
 3. Within Matlab, browse to the unpacked folder. Then, go to the `test` folder.
 4. Run the `integrity_test.m` file.
-5. Make sure all the tests are correctly passed.
+5. Make sure all tests are correctly passed.
 
